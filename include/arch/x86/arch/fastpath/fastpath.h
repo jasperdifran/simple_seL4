@@ -15,6 +15,14 @@ static inline int fastpath_reply_cap_check(cap_t cap)
 }
 #endif
 
+#ifdef CONFIG_IRQ_FASTPATH
+static inline void fastpath_irq(irq_t irq)
+    NORETURN;
+#endif
+
+void slowpath_irq(irq_t irq)
+    NORETURN;
+
 void slowpath(syscall_t syscall)
 NORETURN;
 

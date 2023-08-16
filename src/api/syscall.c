@@ -34,9 +34,8 @@
 /* The haskell function 'handleEvent' is split into 'handleXXX' variants
  * for each event causing a kernel entry */
 
-exception_t handleInterruptEntry(void)
+exception_t handleInterruptEntry(irq_t irq)
 {
-    irq_t irq;
 
 #ifdef CONFIG_KERNEL_MCS
     if (SMP_TERNARY(clh_is_self_in_queue(), 1)) {
@@ -45,7 +44,6 @@ exception_t handleInterruptEntry(void)
     }
 #endif
 
-    irq = getActiveIRQ();
     if (IRQT_TO_IRQ(irq) != IRQT_TO_IRQ(irqInvalid)) {
         handleInterrupt(irq);
     } else {

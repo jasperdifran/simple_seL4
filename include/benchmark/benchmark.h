@@ -62,6 +62,7 @@ static inline void trace_point_stop(word_t id)
                 ksLog[ksLogIndex] = (benchmark_tracepoint_log_entry_t) {
                     id, ksExit - ksEntries[id]
                 };
+                // printf("trace_point_stop: ksLog[%lu] = {id = %lu, duration = %llu}\n", ksLogIndex, id, ksExit - ksEntries[id]);
             }
             /* increment the log index even if we have exceeded the log size
              * this is so we can tell if we need a bigger log */
